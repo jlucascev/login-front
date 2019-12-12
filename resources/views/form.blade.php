@@ -66,6 +66,9 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
+                @if ($response)
+                <p>{{$response}}</p>
+                @endif
                 <form method='POST' action=''>
                     @csrf
                     <input type="email" name="email" required placeholder='Inserta email'>
