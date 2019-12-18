@@ -12,3 +12,7 @@
 */
 
 Route::any('/', 'FrontController@front');
+
+Route::any('/accesos', 'FrontController@accesos');
+
+Route::any('/ajax', 'FrontController@ajax');

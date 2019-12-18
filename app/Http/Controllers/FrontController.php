@@ -22,7 +22,7 @@ class FrontController extends Controller
 
     		$jwt = JWT::encode($payload, $key);
 
-		    $ch = curl_init(env('LOGIN_URL'));
+		    $ch = curl_init(env('API_URL').'/login');
 
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $jwt);
@@ -34,5 +34,17 @@ class FrontController extends Controller
 			$viewParams['response'] = "Respuesta del servidor: ".print_r($response,true);
 		}
     	return view('form',$viewParams);
+    }
+
+    public function accesos(){
+        return view('login-logs');
+    }
+
+    public function ajax(){
+        $ch = curl_init(env('API_URL').'/accesos');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        return response($response);
     }
 }
